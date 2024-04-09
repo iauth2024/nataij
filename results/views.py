@@ -6,7 +6,7 @@ def search_excel(request):
     if request.method == 'POST':
         search_value = int(request.POST.get('search_value'))
         sheet_name = request.POST.get('sheet_name')  # Retrieve selected sheet name
-        file_path = 'C:\\Nateeja.xlsx'
+        file_path = 'Nateeja.xlsx'
 
         try:
             df = pd.read_excel(file_path, sheet_name=sheet_name)
