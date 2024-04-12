@@ -10,6 +10,11 @@
             size: A4;
             margin: 0;
         }
+
+        .header-image {
+        height: auto; /* Reset height to auto for printing */
+        width: auto; /* Reset width to auto for printing */
+        }
         body {
             margin: 0;
             padding: 0;
@@ -83,13 +88,15 @@
             text-align: center;
         }
         .header-image {
-            width: 80%;
-            height: 200px;
-            margin-left: auto;
-            padding-left: 10%;
-            
-        }
-         /* Logo watermark */
+    display: block; /* Ensures the image is displayed as a block element */
+    margin: 0 auto; /* Center horizontally */
+    padding: 10px;
+    height: 200px;
+    margin-left: auto;
+   padding-top: 15px;
+}
+
+       /* Logo watermark */
          .watermark {
             position: absolute;
             width: 350px;
@@ -165,25 +172,21 @@
 
      
     <!-- Summary Section -->
-    <table class="floral-border bottom-section">
-        <thead>
+<table class="floral-border bottom-section">
+    <thead>
+        <tr>
+            <th colspan="2"><h1>Summary</h1></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for key, value in bottom_section_data.items %}
             <tr>
-                <th colspan="2"><h1>Summary</h1></th>
+                <td>{{ key }}</td>
+                <td>{% if value == 'nan' %} ---- {% else %} {{ value }} {% endif %}</td>
             </tr>
-        </thead>
-        <tbody>
-            {% for key, value in bottom_section_data.items %}
-                <tr>
-                    <td>{{ key }}</td>
-                    <td>{{ value }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <!-- Back to Search Form Link -->
-    <a href="{% url 'search_excel' %}">Back to Search Form</a>
-
+        {% endfor %}
+    </tbody>
+</table>
     {% endif %}
 </body>
 </html>

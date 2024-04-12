@@ -16,6 +16,9 @@ def search_excel(request):
                 # Convert DataFrame to dictionary for passing to template
                 result_dict = result.to_dict(orient='records')[0]
 
+                # Format the percentage value to one decimal place with '%' sign
+                result_dict['فیصد'] = "{:.1f}%".format(result_dict['فیصد'])
+
                 # Split the data into top, middle, and bottom sections
                 top_section_data = {}
                 middle_section_data = {}
